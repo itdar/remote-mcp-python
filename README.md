@@ -83,6 +83,6 @@ python3 src/com.gino.mcp/main.py
 
 명령어로 한 번에 설치하려면
 ```bash
-   pip install -r requirements.txt
+   uv pip install -r requirements.txt
 ```
 
