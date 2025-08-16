@@ -1,6 +1,6 @@
 # PPYY - FastMCP HTTP Server
 
-FastAPI를 사용한 HTTP 인터페이스 MCP (Model Context Protocol) 서버입니다.
+FastAPI를 사용한 python MCP (Model Context Protocol) 서버
 
 ## 프로젝트 구조
 
@@ -79,3 +79,10 @@ python3 src/com.gino.mcp/main.py
 - fastmcp
 - httpx
 - mcp[cli]
+... 등
+
+명령어로 한 번에 설치하려면
+```bash
+   pip install -r requirements.txt
+```
+
