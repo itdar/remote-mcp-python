@@ -1,8 +1,11 @@
 from fastmcp import FastMCP
-
-mcp = FastMCP("Demo 🚀")
+from tools.sample import register_tools
 
 def main():
+    mcp = FastMCP("Demo")
+
+    register_tools(mcp)
+
     mcp.run(transport="streamable-http")
 
 if __name__ == "__main__":

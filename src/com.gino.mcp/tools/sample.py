@@ -1,8 +1,6 @@
-from fastmcp import FastMCP
 
-mcp = FastMCP("test")
-
-@mcp.tool()
-async def hello(name: str) -> str:
-    """Say hello to someone"""
-    return f"Hello, {name}!"
+def register_tools(mcp):
+    @mcp.tool()
+    async def hello(name: str) -> str:
+        """Say hello to someone"""
+        return f"Hello, {name}!"
