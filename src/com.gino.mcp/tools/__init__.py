@@ -1,3 +1,3 @@
-from .sample import register_tools
+from .sample import register_sample_tools
 
-__all__ = ["register_tools"]
+__all__ = ["register_sample_tools"]

@@ -1,10 +1,10 @@
 from fastmcp import FastMCP
-from tools.sample import register_tools
+from tools.sample import register_sample_tools
 
 def main():
     mcp = FastMCP("Demo")
 
-    register_tools(mcp)
+    register_sample_tools(mcp)
 
     mcp.run(transport="streamable-http")
 
