@@ -63,7 +63,7 @@ async def your_tool(param: str) -> str:
     return await your_function(param)
 ```
 
-## 새 리소스 추가 방법
+## 새 리소스 추가 방법 (추후에 상세내용 추가 예정)
 
 `src/com/gino.mcp/tools/register_sample_tools.py` 참고해서 
 아래 리소스 형식에 맞게 함수나 스크립트 등 추가:
