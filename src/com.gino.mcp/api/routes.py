@@ -10,15 +10,16 @@ from ..handlers.default import (
 
 app = FastAPI()
 
+
 @app.post("/")
 async def handle_mcp_request(request: Request):
     try:
         data = await request.json()
-        
+
         method = data.get('method')
         params = data.get('params', {})
         request_id = data.get('id')
-        
+
         # Route MCP methods to appropriate handlers
         if method == 'initialize':
             response = await handle_initialize(params, request_id)
@@ -30,28 +31,17 @@ async def handle_mcp_request(request: Request):
             return await handle_notification(method)
         else:
             raise HTTPException(404, f"Method not found: {method}")
-            
+
     except HTTPException:
         raise
     except Exception as e:
         error_response = create_error_response(
-            -32603, 
-            f"Internal error: {e}", 
+            -32603,
+            f"Internal error: {e}",
             data.get('id') if 'data' in locals() else None
         )
         return JSONResponse(content=error_response, status_code=500)
 
-@app.get("/health")
-async def health():
-    return {"status": "ok"}
-
-@app.get("/")
-async def get():
-    return {"status": "ok"}
-
-@app.delete("/")
-async def delete():
-    return {"status": "ok"}
 
 @app.get("/favicon.ico")
 async def favicon():

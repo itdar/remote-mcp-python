@@ -100,6 +100,23 @@ python3 src/com.gino.mcp/main.py
 명령어로 한 번에 설치하려면
 ```bash
    uv pip install -r requirements.txt
-   uv pip3 install -r requirements.txt
 ```
 
+파이썬부터 설치하려면
+```bash
+  ## 원하는 버전 설치하고
+  uv python install 3.13
+  
+  ## IDE 에서 사용할 venv 경로에 들어가서
+  uv venv --python 3.13.0
+  source .venv/bin/activate
+```
+
+로컬에서 클로드에 등록 테스트 해보려면 (https)
+```bash
+  brew install ngrok
+  ngrok http 8080
+  
+  ## 로그인 안되어있으면 아래 참고 (ngrok)
+  # https://dashboard.ngrok.com/get-started/your-authtoken
+```
