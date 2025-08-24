@@ -1,0 +1,12 @@
+[project]
+name = "FII"
+version = "0.1.0"
+description = "Financial Information Integration [Python MCP server]"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastmcp>=2.11.3,<3.0.0",
+    "mcp[cli]",
+    "yfinance>=0.2.65,<0.3.0",
+    "uvicorn>=0.35.0,<1.0.0",
+]

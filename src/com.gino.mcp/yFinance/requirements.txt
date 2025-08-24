@@ -1,0 +1,5 @@
+requests
+fastmcp
+fastapi
+httpx
+mcp[cli]
