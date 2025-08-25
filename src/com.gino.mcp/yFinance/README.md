@@ -146,4 +146,39 @@ To integrate this server with Claude for Desktop:
 
 MIT
 
+---
 
+### Google Cloud Run script
+```shell
+#!/bin/bash
+
+# --- 1. gcloud CLI 설치 (이미 설치했다면 건너뛰어도 됩니다) ---
+curl https://sdk.cloud.google.com | bash
+exec -l $SHELL
+
+# --- 2. gcloud 초기 설정 및 인증 (이미 설정했다면 건너뛰어도 됩니다) ---
+gcloud init
+
+# --- 3. GCP API 활성화 및 Docker 인증 ---
+gcloud services enable run.googleapis.com artifactregistry.googleapis.com
+gcloud auth configure-docker asia-northeast3-docker.pkg.dev
+
+# --- 4. Artifact Registry 저장소 생성 (이미 생성했다면 건너뛰어도 됩니다) ---
+gcloud artifacts repositories create mcp-servers \
+    --repository-format=docker \
+    --location=asia-northeast3 \
+    --description="MCP Server Images"
+
+# --- 5. Docker 이미지 빌드 (amd64 플랫폼 지정) 및 GCP로 푸시 ---
+export GIN_PROJECT_ID=$(gcloud config get-value project)
+docker build --platform linux/amd64 -t asia-northeast3-docker.pkg.dev/$GIN_PROJECT_ID/mcp-servers/gino-mcp:latest .
+docker push asia-northeast3-docker.pkg.dev/$GIN_PROJECT_ID/mcp-servers/gino-mcp:latest
+
+# --- 6. Google Cloud Run 배포 ---
+gcloud run deploy gino-mcp-service \
+    --image=asia-northeast3-docker.pkg.dev/$GIN_PROJECT_ID/mcp-servers/gino-mcp:latest \
+    --port=8080 \
+    --region=asia-northeast3 \
+    --allow-unauthenticated \
+    --platform=managed
+```

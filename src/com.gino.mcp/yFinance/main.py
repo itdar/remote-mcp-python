@@ -24,8 +24,10 @@ def main():
 
     register_sample_tools(mcp)
 
+    port = int(os.environ.get("PORT", 8080))
+
     mcp.run(host="0.0.0.0",
-            port=8080,
+            port=port,
             transport="streamable-http"
     )
 
